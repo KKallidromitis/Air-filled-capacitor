@@ -187,29 +187,28 @@ charge4 = energy4*2./(Vcentral-Vedge);
      pEx(i)=-(Vnew(i+1,1)-Vnew(i,1))/h;
    end
 
-% figure1 = figure;
-% axes1 = axes('Parent',figure1,'YGrid','on','XGrid','on','FontSize',10);
-% box(axes1,'on');
-% hold(axes1,'all');
-% plot(x(1:iend-1),pEy(1:iend-1),'Marker','none','LineWidth',2,'Color',[0 0 1],'DisplayName','field component Ey')
-% xlabel('x','FontSize',12);
-% ylabel('Ey','FontSize',12);
-% title('field component Ey','FontSize',12);
-% %legend('show');
-% 
-% figure1 = figure;
-% axes1 = axes('Parent',figure1,'YGrid','on','XGrid','on','FontSize',10);
-% box(axes1,'on');
-% hold(axes1,'all');
-% plot(x(1:iend-1)+h/2,pEx(1:iend-1),'Marker','none','LineWidth',2,'Color',[0 1 0],'DisplayName','field component Ex')
-% xlabel('x','FontSize',12);
-% ylabel('Ex','FontSize',12);
-% title('field component Ex','FontSize',12);
-% %legend('show');
+figure1 = figure;
+axes1 = axes('Parent',figure1,'YGrid','on','XGrid','on','FontSize',10);
+box(axes1,'on');
+hold(axes1,'all');
+plot(x(1:iend-1),pEy(1:iend-1),'Marker','none','LineWidth',2,'Color',[0 0 1],'DisplayName','field component Ey')
+xlabel('x','FontSize',12);
+ylabel('Ey','FontSize',12);
+title('field component Ey','FontSize',12);
+legend('show');
+ 
+figure1 = figure;
+axes1 = axes('Parent',figure1,'YGrid','on','XGrid','on','FontSize',10);
+box(axes1,'on');
+hold(axes1,'all');
+plot(x(1:iend-1)+h/2,pEx(1:iend-1),'Marker','none','LineWidth',2,'Color',[0 1 0],'DisplayName','field component Ex')
+xlabel('x','FontSize',12);
+ylabel('Ex','FontSize',12);
+title('field component Ex','FontSize',12);
+legend('show');
 
 
 
-%print
-% fprintf('%i\n',iter);
-% fprintf('%i\n',iter1);
-% fprintf('%i\n',run_t);
+fprintf('%i\n',iter);
+fprintf('%i\n',iter1);
+fprintf('%i\n',run_t);
