@@ -10,11 +10,11 @@ a = 10;
 b = 9;
 d = 3.75;
 
-
-
+ag=0;
 % mesh
 h = 0.5;
 
+n=0;
 
 
 
@@ -23,16 +23,20 @@ h = 0.5;
 % alf=1.988; % for 0.0025
 % alf=1.97625; % for 0.005
 % alf=1.95; % for 0.01
+
+
 eps_0=8.854187817e-12; % C/V/m in SI units
 % boundary conditions
 Vedge = 0.;
 Vcentral = 100.;
 
 
-iter1=999999;
 alf=1.9999;
-n=0;
-while (n <= 10000) %Can reach until alf=1 thus all values within limits (1<alf<2)
+bn=10000;
+x1=zeros(1,bn);
+y1=zeros(1,bn);
+while (n <= bn) %Can reach until alf=1.0001 thus all values within limits (1<alf<2)
+
 % initialisation 
 ist=1;
 iend=round(a/h)+1;
@@ -46,9 +50,9 @@ dVy = zeros(kend);
 pEx= zeros(jend);
 pEy= zeros(jend);
 max_it = (iend*jend)*10;
-
 % time start
 cl_st=clock;
+
    for iter = 1:max_it  % begin iteration
     fprintf('%i\n',iter);                       
     for i = ist:iend
@@ -89,24 +93,25 @@ cl_st=clock;
         Vold = Vnew;
         err_loc = 0.;
         err_glo = 0.;
-   end
    
-if(iter1 >= iter)
+
+   end
+
+y1(1,n+1)=iter;
+x1(1,n+1)=alf;
 alf = alf-0.0001;
-iter1 = iter;
 n=n+1;
-else
-    n=10001;
+fprintf('%i\n',iter);
+
 end
-end
-alf=alf+0.0001;
-iter = iter-1;
+plot(x1,y1);
+
 
 
 
 fprintf('%i\n',alf);
-fprintf('%i\n',iter);
 fprintf('%i\n',n);
+
 
 %time finish
 cl_end=clock;
@@ -122,9 +127,9 @@ run_t = etime(cl_end, cl_st);
  
 % %image(x,y,Vnew');
 % contourf(x,y,Vnew',20);
-% xlabel('x','FontSize',12);
-% ylabel('y','FontSize',12);
-% title('potential V','FontSize',12);
+xlabel('Alpha','FontSize',12);
+ylabel('Number of Iterations','FontSize',12);
+title('Alpha vs Number of Iterations','FontSize',12);
 % %contourf(transpose(Vnew),20);
  
 % charge from div method eq (6)
